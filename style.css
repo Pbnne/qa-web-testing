@@ -1,0 +1,404 @@
+/* Основные стили и сброс */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-bg: #1A1A1A;
+  --secondary-bg: #2D2D2D;
+  --tertiary-bg: #1b1b1b;
+  --primary-text: #ffffff;
+  --accent-color: rgb(128, 67, 226);
+  --accent-hover: rgb(0, 0, 255);
+  --border-color: #e0e0e0;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+  --padding-section: 24px;
+  --padding-container: 40px;
+  --img-border: 2px solid #518eff;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--primary-bg);
+  line-height: 1.6;
+  color: var(--primary-text);
+  font-size: 16px;
+}
+
+/* Контейнеры и общие стили */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  padding: 0 20px var(--padding-container);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Стиль для кнопки меню */
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--primary-text);
+}
+
+.section_header {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+/* Шапка сайта */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--tertiary-bg);
+  padding: 15px 5%;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav h2 {
+  display: none; /* Скрываем заголовок навигации по умолчанию */
+}
+
+.navigation {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Раздел "Обо мне" */
+.information {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  background-color: var(--secondary-bg);
+  border-radius: var(--border-radius);
+  padding: var(--padding-section);
+  box-shadow: var(--shadow);
+}
+
+.performance {
+  flex: 1;
+  min-width: 300px;
+}
+
+.my_image {
+  flex-shrink: 0;
+}
+
+.my_image img {
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border: var(--img-border);
+  max-width: 150px;
+  height: auto;
+  width: 100%;
+}
+
+/* Стиль для информации "Обо мне" */
+.info {
+  text-align: center;
+  background-color: var(--secondary-bg);
+  border-radius: var(--border-radius);
+  padding: var(--padding-section);
+  box-shadow: var(--shadow);
+}
+
+.info p {
+  margin-bottom: 10px;
+}
+
+/* Ссылки */
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+.git_link {
+  display: block;
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+}
+
+/* Проекты и кейсы */
+.all_projects, .all_cases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  background-color: var(--secondary-bg);
+  border-radius: var(--border-radius);
+  padding: var(--padding-section);
+  box-shadow: var(--shadow);
+}
+
+.project, .case, .hard_skills, .soft_skills {
+  background-color: var(--tertiary-bg);
+  border-radius: var(--border-radius);
+  padding: var(--padding-section);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.about_project, .about_case {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.about_project h2, .about_case h2 {
+  margin-bottom: 15px;
+}
+
+.about_project p, .about_case p {
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+/* Навыки */
+.my_skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  background-color: var(--secondary-bg);
+  border-radius: var(--border-radius);
+  padding: var(--padding-section);
+  box-shadow: var(--shadow);
+}
+
+.hard_skills, .soft_skills {
+  padding: var(--padding-section);
+}
+
+.hard_skills h3, .soft_skills h3 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.hard_skills ul, .soft_skills ul {
+  padding-left: 20px;
+}
+
+.hard_skills li, .soft_skills li {
+  margin-bottom: 8px;
+}
+
+/* Футер */
+footer {
+  background-color: var(--tertiary-bg);
+  padding: 30px 20px;
+  text-align: center;
+}
+
+footer h2 {
+  margin-bottom: 20px;
+}
+
+footer .navigation {
+  justify-content: center;
+  padding: 0;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 992px) {
+  .information {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .performance {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  header {
+    flex-direction: column;
+    padding-bottom: 15px;
+  }
+  
+  header > a {
+    margin-bottom: 10px;
+  }
+  
+  nav {
+    position: fixed;
+    top: 50px; /* высота хедера */
+    left: -100%; /* начально скрыто за пределами экрана */
+    width: 80%;
+    height: 100vh;
+    background-color: var(--tertiary-bg);
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding: 20px;
+  }
+  
+  nav.active {
+    left: 0; /* показываем при активации */
+  }
+  
+  .navigation {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .navigation li {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .navigation a {
+    display: block;
+    padding: 10px;
+    font-size: 1.1rem;
+  }
+  
+  .information {
+    flex-direction: column-reverse;
+  }
+  
+  .my_image {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 10px;
+    z-index: 1000;
+  }
+  
+  /* Важно: добавляем отступ для основного контента, 
+     чтобы он не оказался под фиксированным header */
+  main {
+    margin-top: 60px; /* Регулируйте значение в зависимости от высоты вашего header */
+  }
+  
+  header > a h2 {
+    font-size: 1.1rem;
+  }
+  
+  nav {
+    width: 100%;
+  }
+  
+  nav h2 {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+  
+  .navigation li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .navigation a {
+    display: block;
+    padding: 8px;
+    background-color: var(--tertiary-bg);
+    border-radius: 5px;
+  }
+  
+  /* Другие стили для мобильных устройств */
+  .all_projects, .all_cases, .my_skills {
+    padding: 15px;
+  }
+  
+  .project, .case, .hard_skills, .soft_skills {
+    padding: 15px;
+  }
+  
+  .info {
+    padding: 15px;
+  }
+  
+  .container {
+    padding: 0 15px 30px;
+  }
+  
+  footer .navigation {
+    flex-direction: column;
+  }
+}
+
+/* Анимации и переходы */
+.project, .case, a, img {
+  transition: all 0.3s ease;
+}
+
+.project:hover, .case:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Доступность */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Для печати */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+  
+  .container {
+    border: none;
+    margin: 0;
+    padding: 10px 0;
+  }
+  
+  header, nav, footer {
+    display: none;
+  }
+}
