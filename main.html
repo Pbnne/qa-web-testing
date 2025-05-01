@@ -1,110 +1,126 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Проверка баланса проезного</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        h1 {
-            color: #333;
-        }
-        input {
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 250px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #result {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
-        }
-    </style>
-    <script>
-        async function checkBalance() {
-            const sms = document.getElementById('cardNumber').value;
-            const data = new FormData();
-            data.append('bsk', sms);
-            data.append('cardsource', 'new');
-            data.append('user_lang', 'ru');
-
-            // Логируем отправляемые данные
-            console.log('Отправляемые данные:', {
-                bsk: sms,
-                cardsource: 'new',
-                user_lang: 'ru'
-            });
-
-            try {
-                const response = await fetch('https://alpha.ltkarta.ru/fideth', {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'Cache-Control': 'no-cache', // Отключаем кеширование
-                        'Pragma': 'no-cache', // Отключаем кеширование
-                        'Accept': 'application/json, text/javascript, */*; q=0.01',
-                        'sec-ch-ua-platform': '"Windows"',
-                        'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132", "YaBrowser";v="25.2", "Yowser";v="2.5"',
-                        'sec-ch-ua-mobile': '?0',
-                        'Sec-Fetch-Site': 'same-origin',
-                        'Sec-Fetch-Mode': 'cors',
-                        'Sec-Fetch-Dest': 'empty'
-                    },
-                    body: data
-                });
-
-                console.log('Response Status:', response.status); // Лог статуса ответа
-
-                if (response.ok) {
-                    const jsonResponse = await response.json(); // Получаем JSON
-                    console.log('JSON Response:', jsonResponse); // Логируем ответ JSON
-                    if (jsonResponse.action === "error") {
-                        document.getElementById('result').innerText = `Ошибка: ${jsonResponse.error_text}`;
-                    } else {
-                        // Обработка успешного ответа
-                        document.getElementById('result').innerText = "Запрос выполнен успешно.";
-                    }
-                } else {
-                    const errorText = await response.text();
-                    console.error('Error Response:', errorText); // Логируем текст ошибки
-                    document.getElementById('result').innerText = `Ошибка: ${response.status} - ${errorText}`;
-                }
-            } catch (error) {
-                document.getElementById('result').innerText = "Произошла ошибка при выполнении запроса.";
-                console.error("Ошибка:", error);
-            }
-        }
-    </script>
-</head>
-<body>
-    <h1>Проверка баланса проезного</h1>
-    <input type="text" id="cardNumber" placeholder="Введите номер карты" required>
-    <button onclick="checkBalance()">Проверить баланс</button>
-    <p id="result"></p>
-</body>
+<html>
+    <head>  
+        <meta charset="utf-8" /> <!-- установка набора символов -->
+        <meta name="viewport" content="width=device-width" /> <!-- элемент видовой области обеспечивает отрисовку страницы на ширине области просмотра, предотвращая отрисовку страниц мобильными браузерами шире области просмотра, а затем уменьшая их.-->
+        <title>Овчаренко Павел</title> 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="foto/ava.jpg" type="image/x-icon">
+        <link rel="shortcut icon" href="foto/ava.jpg" type="image/x-icon">
+    </head>
+    <body> 
+        <header>
+            <a href="#"><h2>Визитка-портфолио</h2></a>
+            <nav>
+                <h2>Навигация:</h2>
+                <ul class="navigation">
+                    <li><a href="#about_me">Обо мне</a></li>
+                    <li><a href="#projects">Проекты и учебные достижения</a></li>
+                    <li><a href="#skills">Навыки</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="me" class="container">
+                <div class="information">
+                    <div class="performance">
+                        <h1>Овчаренко Павел Дмитриевич</h1>
+                        <h2>Качество в тестировании веб-приложений</h2>
+                        
+                    </div>
+                    <div class="my_image">
+                        <img src="foto/ava.jpg" alt="Мое фото" width="200" height="300">
+                    </div>
+                </div>
+            </section>
+            <section id="about_me" class="container">
+                <h2 class="section_header">Обо мне</h2>
+                <div class="info">
+                    <p>Меня зовут Овчаренко Павел. В течение двух лет я работал самозанятым, тестируя программы, ботов, парсеры, сайты и чекеры</p>
+                    <p>Имею опыт работы в команде, что помогло мне развивать навыки взаимодействия и эффективного тестирования.</p>
+                    <p>Я стремлюсь к росту в области тестирования веб-приложений и углубляю знания, чтобы стать экспертом в данной сфере.</p>
+                </div>
+            </section>
+            <section id="projects" class="container">
+                <h2 class="section_header">Проекты и учебные достижения</h2>
+                <a href="https://github.com/Pbnne" target="_blank"><h3 class="git_link">GitHub</h3></a>
+                <div class="all_projects">
+                    <div class="project">
+                        <div class="about_project">
+                            <h2>Мой GitHub</h2>
+                            <p>Там вы можете найти мои проекты, включая тренажёр по автоматизации и телеграм-ботов, написанных на Python. Эти проекты демонстрируют мои навыки в программировании и тестировании.</p>
+                            <a href="https://github.com/Pbnne">Ссылка на github</a>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="about_project">
+                            <h2>Мой stepik.org</h2>
+                            <p>Выполненные лабораторные работы по предмету <i>"Введение в информационные технологии"</i></p>
+                            <a href="https://stepik.org/users/546768757/profile">stepik.org</a>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="section_header">Мои знания</h2>
+                <div class="all_cases">
+                    <div class="case">
+                        <div class="about_case">
+                            <h2>Теория тестирования</h2>
+                            <p>В теории тестирования знаком с классами эквивалентности, анализом граничных значений, чек-листами и тестовыми сценариями. Умею проводить функциональное, регрессионное, нагрузочное и стресс-тестирование, а также тестирование пользовательского интерфейса и API.</p>    
+                        </div>
+                    </div>
+                    <div class="case">
+                        <div class="about_case">
+                            <h2>Мой опыт</h2>
+                            <p>В своем опыте я работал с Browser Automation Studio и разрабатывал автоматизацию на Python с использованием библиотеки Selenium. Также работал с базами данных SQL и использовал Postman для тестирования API. В мои обязанности входила работа с DevTools для оптимизации веб-приложений и отладки кода. Кроме того, я владею основами HTML и CSS, что помогает лучше понимать структуру веб-страниц и взаимодействовать с ними в процессе тестирования.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="skills" class="container">
+                <h2 class="section_header">Мои навыки</h2>
+                <div class="my_skills">
+                    <div class="hard_skills">
+                        <h3>Hard skills</h3>
+                        <ul>
+                            <li>Python</li>
+                            <li>Git</li>
+                            <li>SQL</li>
+                            <li>HTML/CSS</li>
+                            <li>DevTools</li>
+                            <li>Bash</li>
+                            <li>Postman</li>
+                        </ul>
+                    </div>
+                    <div class="soft_skills">
+                        <h3>Soft Skills</h3>
+                        <ul>
+                            <li>Любознательность</li>
+                            <li>Коммуникабельность</li>
+                            <li>Самоорганизация</li>
+                            <li>Ответственность</li>
+                            <li>Критическое мышление</li>
+                            <li>Стрессоустойчивость</li>
+                            <li>Ассертивность</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer id="contacts" class="contacts">
+            <h2>Связаться со мной</h2>
+            <ul class="navigation">
+                <li><a href="https://t.me/pbnne1" target="_blank">Telegram</a></li>
+                <li><a href="mailto:pavelbledny@vk.com" target="_blank">Почта: pavelbledny@vk.com</a></li>
+                <li>Телефон: +790065868</li>
+                <li>Адрес: г.Санкт-Петербург</li>
+            </ul>
+        </footer>
+        <script>
+            document.querySelector('.hamburger-menu').addEventListener('click', function() {document.querySelector('nav').classList.toggle('active');});
+        </script>
+    </body>
 </html>
